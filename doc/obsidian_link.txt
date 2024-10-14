@@ -1,0 +1,95 @@
+==============================================================================
+obsidian_link                                                    *obsidian_link*
+
+CONTENTS                                                *obsidian_link-contents*
+
+1. Introduction ............................ |obsidian_link-introduction|
+2. Requirements ............................ |obsidian_link-requirements|
+3. Installation ............................ |obsidian_link-installation|
+   Vim-plug ................................ |obsidian_link-installation-vimpug|
+   Packer .................................. |obsidian_link-installation-packer|
+   Lazy .................................... |obsidian_link-installation-lazy|
+4. Configuration ........................... |obsidian_link-configuration|
+5. Usage ................................... |obsidian_link-usage|
+6. Features ................................ |obsidian_link-features|
+7. License ................................. |obsidian_link-license|
+
+==============================================================================
+1. INTRODUCTION:                                    *obsidian_link-introduction*
+
+The `obsidian_link` plugin allows you to easily create Obsidian-style links to 
+Markdown files within your current directory and its subdirectories. 
+It integrates with Telescope to provide a user-friendly interface for 
+selecting files.
+
+2. REQUIREMENTS                                     *obsidian_link-requirements*
+
+- [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
+3. INSTALLATION                                     *obsidian_link-installation*
+
+`Vim-plug`                                   *obsidian_link-installation-vimpug*
+
+Add the following line to your `init.vim` or `init.lua`:
+>
+  Plug { 
+    'abcdtux/obsidian_link',
+    'requires': { 'nvim-telescope/telescope.nvim' } 
+  }
+<
+Then run `:PlugInstall` to install the plugin.
+
+`Packer`                                     *obsidian_link-installation-packer*
+Add the folowing line in your configuration:
+>
+  use {
+    'abcdtux.nvim/obsidian_link',
+    dependencies = { "nvim-telescope/telescope.nvim" }
+  }
+<
+Then run `:PackerSync` to install the plugin.
+
+`Lazy`                                         *obsidian_link-installation-lazy*
+Add new config file:
+>
+  return {
+    "abcdtux/obsidian_link",
+    dependencies = { "nvim-telescope/telescope.nvim" }
+  }
+<
+Then run `:Lazy` to install the plugin.
+
+4. Configuration                                   *obsidian_link-configuration*
+
+obsidian_link does not have any configuration. You can define a shortcut in 
+insert mode:
+>
+  vim.api.nvim_set_keymap(
+    'i', 
+    '<C-l>', 
+    ':require("obsidian_link").obsl<CR>', 
+    { noremap = true, silent = true }
+  )
+<
+5. Usage                                                   *obsidian_link-usage*
+
+To create an Obsidian link to a Markdown file, invoke the following command:
+>
+  :require("obsidian_link").obsl
+<
+This will open a Telescope prompt displaying a list of Markdown files in the 
+current directory and its subdirectories. Select a file, and it will insert a
+link in the format [[<file>]] at the cursor position.
+It is possible to type characters in the prompt to filter the displayed list.
+
+6. Features                                             *obsidian_link-features*
+Browse and select Markdown files using Telescope.
+Automatically format links in the Obsidian style: [[<file>]].
+Supports subdirectories for easy navigation.
+
+7. License                                               *obsidian_link-license*
+This project is licensed under the MIT License. See the LICENSE file for more
+details.
+
+vim:tw=78:ts=8:ft=help:norl:
+
